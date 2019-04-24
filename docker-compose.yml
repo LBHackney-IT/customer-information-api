@@ -1,10 +1,10 @@
 version: '3.2'
 
 services:
-  base-api:
-    image: base-api
+  customer-information-api:
+    image: customer-information-api
     build:
-      context: base-api/
+      context: customer-information-api/
       dockerfile: ./Dockerfile
     ports:
       - 3000:3000
@@ -17,11 +17,11 @@ services:
     ports:
       - 1433:1433
 
-  base-api-test:
-    image: base-api-test
+  customer-information-api-test:
+    image: customer-information-api-test
     build:
       context: .
-      dockerfile: base-api.Tests/Dockerfile
+      dockerfile: customer-information-api.Tests/Dockerfile
     environment:
       - TEST_UH_URL=Server=stub-test-db;Database=uhsimulator;User Id='sa';Password='Rooty-Tooty';
     links:
