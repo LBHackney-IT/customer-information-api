@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using customer_information_api.V1.Domain;
 
 namespace customer_information_api.V1.Infrastructure
 {
@@ -9,6 +8,6 @@ namespace customer_information_api.V1.Infrastructure
         {
         }
 
-        public DbSet<UhTransaction> UTransactions { get; set; }
+      //  public DbSet<UhTransaction> UTransactions { get; set; }
     }
 }

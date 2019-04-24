@@ -5,6 +5,6 @@ namespace customer_information_api.V1.Infrastructure
 {
     public interface IUHContext
     {
-        DbSet<UhTransaction> UTransactions { get; set; }
+      //  DbSet<UhTransaction> UTransactions { get; set; }
     }
 }

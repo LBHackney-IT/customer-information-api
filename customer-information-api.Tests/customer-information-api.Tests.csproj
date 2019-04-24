@@ -19,4 +19,11 @@
     <ProjectReference Include="..\customer-information-api\customer-information-api.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="V1\Domain\" />
+    <Folder Include="V1\Factories\" />
+    <Folder Include="V1\Gateways\" />
+    <Folder Include="V1\Helper\" />
+  </ItemGroup>
+
 </Project>
