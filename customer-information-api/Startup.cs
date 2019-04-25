@@ -11,7 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using customer_information_api.UseCase.V1;
 using customer_information_api.V1.Boundary;
-using customer_information_api.V1.Gateways;
+//using customer_information_api.V1.Gateways;
 using customer_information_api.V1.Infrastructure;
 using customer_information_api.Versioning;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
@@ -109,12 +109,12 @@ namespace customer_information_api
 
         private static void RegisterGateWays(IServiceCollection services)
         {
-            services.AddSingleton<ITransactionsGateway, TransactionsGateway>();
+         //   services.AddSingleton<ITransactionsGateway, TransactionsGateway>();
         }
 
         private static void RegisterUseCases(IServiceCollection services)
         {
-            services.AddSingleton<IListTransactions, ListTransactionsUsecase>();
+            //services.AddSingleton<IListTransactions, ListTransactionsUsecase>();
         }
 
 
