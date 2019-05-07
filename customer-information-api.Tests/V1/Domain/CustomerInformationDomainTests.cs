@@ -12,126 +12,136 @@ namespace customer_information_api.Tests.V1.Domain
     public class CustomerInformationDomainTests
     {
         [Test]
-        public void customer_information_domain_has_title()
+        public void Customer_information_has_contactId()
         {
             CustomerInformation customerInformation = new CustomerInformation();
-            Assert.IsNull(customerInformation.Title);
+            Assert.Zero(customerInformation.contactId);
         }
         [Test]
-        public void customer_information_domain_has_forenames()
+        public void Customer_information_domain_has_title()
         {
             CustomerInformation customerInformation = new CustomerInformation();
-            Assert.IsNull(customerInformation.Forenames); 
+            Assert.IsNull(customerInformation.title);
         }
-
         [Test]
-        public void customer_information_has_last_name()
+        public void Customer_information_domain_has_forenames()
         {
             CustomerInformation customerInformation = new CustomerInformation();
-            Assert.IsNull(customerInformation.LastName);
+            Assert.IsNull(customerInformation.forenames); 
         }
         [Test]
-        public void customer_information_has_date_of_birth()
+        public void Customer_information_has_surname()
         {
             CustomerInformation customerInformation = new CustomerInformation();
-            DateTime dob = new DateTime(2019, 02, 21);
-            customerInformation.DateOfBirth = dob;
-            Assert.AreEqual(dob, customerInformation.DateOfBirth);
+            Assert.IsNull(customerInformation.surname);
         }
-
         [Test]
-        public void customer_information_has_date_created()
+        public void Customer_information_has_dateCreated()
         {
             CustomerInformation customerInformation = new CustomerInformation();
             DateTime dateCreated = new DateTime(2019, 02, 21);
-            customerInformation.DateCreated = dateCreated;
-            Assert.AreEqual(dateCreated,customerInformation.DateCreated);
+            customerInformation.dateCreated = dateCreated;
+            Assert.AreEqual(dateCreated, customerInformation.dateCreated);
         }
         [Test]
-        public void customer_information_has_caller_notes()
+        public void Customer_information_has_callerNotes()
         {
             CustomerInformation customerInformation = new CustomerInformation();
-            Assert.IsNull(customerInformation.CallerNotes);
+            Assert.IsNull(customerInformation.callerNotes);
         }
         [Test]
-        public void customer_information_has_date_modified()
+        public void Customer_information_has_dateModified()
         {
             CustomerInformation customerInformation = new CustomerInformation();
             DateTime date = new DateTime(2019, 02, 21);
-            customerInformation.DateModified = date;
-            Assert.AreEqual(date,customerInformation.DateModified);
+            customerInformation.dateModified = date;
+            Assert.AreEqual(date,customerInformation.dateModified);
         }
         [Test]
-        public void customer_information_modified_by_user()
+        public void Customer_information_modifiedBy()
         {
             CustomerInformation customerInformation = new CustomerInformation();
-            Assert.IsNull(customerInformation.ModifiedByUser);
+            Assert.IsNull(customerInformation.modifiedBy);
         }
         [Test]
-        public void customer_information_has_national_insurance_number()
+        public void Customer_information_has_nationalInsuranceNumber()
         {
             CustomerInformation customerInformation = new CustomerInformation();
-            Assert.IsNull(customerInformation.NationalInsuranceNumber);
+            Assert.IsNull(customerInformation.nationalInsuranceNumber);
         }
         [Test]
-        public void customer_information_has_modification_type()
+        public void Customer_information_has_dateOfBirth()
         {
             CustomerInformation customerInformation = new CustomerInformation();
-            Assert.IsNull(customerInformation.ModificationType);
+            DateTime dob = new DateTime(2019, 02, 21);
+            customerInformation.dateOfBirth = dob;
+            Assert.AreEqual(dob, customerInformation.dateOfBirth);
         }
         [Test]
-        public void customer_information_has_person_type()
+        public void Customer_information_has_modificationType()
         {
             CustomerInformation customerInformation = new CustomerInformation();
-            Assert.IsNull(customerInformation.PersonType);
+            Assert.IsNull(customerInformation.modificationType);
         }
         [Test]
-        public void customer_information_has_email_address()
+        public void Customer_information_has_personType()
         {
             CustomerInformation customerInformation = new CustomerInformation();
-            Assert.IsNull(customerInformation.EmailAddress);
+            Assert.IsNull(customerInformation.personType);
         }
         [Test]
-        public void customer_information_has_uprn()
+        public void Customer_information_has_emailAddress()
         {
             CustomerInformation customerInformation = new CustomerInformation();
-            Assert.Zero(customerInformation.Uprn);
+            Assert.IsNull(customerInformation.emailAddress);
         }
         [Test]
-        public void customer_information_has_client_id()
+        public void Customer_information_has_modificationProcess()
         {
             CustomerInformation customerInformation = new CustomerInformation();
-            Assert.Zero(customerInformation.ClientId);
+            Assert.Zero(customerInformation.modificationProcess);
         }
         [Test]
-        public void customer_information_has_correspondance_name()
+        public void Customer_information_has_uprn()
         {
             CustomerInformation customerInformation = new CustomerInformation();
-            Assert.IsNull(customerInformation.CorrespondanceName);
+            Assert.Zero(customerInformation.uprn);
         }
         [Test]
-        public void customer_information_has_status_fg()
+        public void Customer_information_has_clientId()
         {
             CustomerInformation customerInformation = new CustomerInformation();
-            Assert.IsNull(customerInformation.StatusFG);
+            Assert.Zero(customerInformation.clientId);
         }
         [Test]
-        public void customer_information_has_gender_fg()
+        public void Customer_information_has_correspondanceName()
         {
             CustomerInformation customerInformation = new CustomerInformation();
-            Assert.IsNull(customerInformation.GenderFG);
+            Assert.IsNull(customerInformation.correspondanceName);
         }
         [Test]
-        public void customer_information_has_uh_contact()
+        public void Customer_information_has_isRecordActive()
         {
             CustomerInformation customerInformation = new CustomerInformation();
-            Assert.Zero(customerInformation.UhContact);
+            Assert.IsNull(customerInformation.isRecordActive);
         }
         [Test]
-        public void customer_information_has_ten_ref()
+        public void Customer_information_has_gender()
         {
             CustomerInformation customerInformation = new CustomerInformation();
-            Assert.IsNull(customerInformation.TenRef);
+            Assert.IsNull(customerInformation.gender);
+        }
+        [Test]
+        public void Customer_information_has_uhContact()
+        {
+            CustomerInformation customerInformation = new CustomerInformation();
+            Assert.Zero(customerInformation.uhContact);
+        }
+        [Test]
+        public void Customer_information_has_tenancyRef()
+        {
+            CustomerInformation customerInformation = new CustomerInformation();
+            Assert.IsNull(customerInformation.tenancyRef);
         }
 
         [Test]
@@ -141,26 +151,27 @@ namespace customer_information_api.Tests.V1.Domain
 
             CustomerInformation customerInformationB = new CustomerInformation()
             {
-                CallerNotes = customerInformationA.CallerNotes,
-                ClientId = customerInformationA.ClientId,
-                ContactNumber = customerInformationA.ContactNumber,
-                CorrespondanceName = customerInformationA.CorrespondanceName,
-                DateCreated = customerInformationA.DateCreated,
-                DateModified = customerInformationA.DateModified,
-                DateOfBirth = customerInformationA.DateOfBirth,
-                EmailAddress = customerInformationA.EmailAddress,
-                Forenames = customerInformationA.Forenames,
-                GenderFG = customerInformationA.GenderFG,
-                LastName = customerInformationA.LastName,
-                ModificationType = customerInformationA.ModificationType,
-                ModifiedByUser = customerInformationA.ModifiedByUser,
-                NationalInsuranceNumber = customerInformationA.NationalInsuranceNumber,
-                PersonType = customerInformationA.PersonType,
-                StatusFG = customerInformationA.StatusFG,
-                TenRef = customerInformationA.TenRef,
-                Title = customerInformationA.Title,
-                UhContact = customerInformationA.UhContact,
-                Uprn = customerInformationA.Uprn
+                contactId = customerInformationA.contactId,
+                title = customerInformationA.title,
+                forenames = customerInformationA.forenames,
+                surname = customerInformationA.surname,
+                dateCreated = customerInformationA.dateCreated,
+                callerNotes = customerInformationA.callerNotes,
+                dateModified = customerInformationA.dateModified,
+                modifiedBy = customerInformationA.modifiedBy,
+                nationalInsuranceNumber = customerInformationA.nationalInsuranceNumber,
+                dateOfBirth = customerInformationA.dateOfBirth,
+                modificationType = customerInformationA.modificationType,
+                personType = customerInformationA.personType,
+                emailAddress = customerInformationA.emailAddress,
+                modificationProcess = customerInformationA.modificationProcess,
+                uprn = customerInformationA.uprn,
+                clientId = customerInformationA.clientId,
+                correspondanceName = customerInformationA.correspondanceName,
+                isRecordActive = customerInformationA.isRecordActive,
+                gender = customerInformationA.gender,
+                uhContact = customerInformationA.uhContact,
+                tenancyRef = customerInformationA.tenancyRef
             };
 
             Assert.True(customerInformationA.Equals(customerInformationB));

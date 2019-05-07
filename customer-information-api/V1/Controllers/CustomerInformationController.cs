@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using customer_information_api.Controllers.V1;
 using customer_information_api.V1.Boundary;
+using customer_information_api.V1.Domain;
 using customer_information_api.V1.UseCase;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -47,5 +48,28 @@ namespace customer_information_api.V1.Controllers
             return NotFound();
         }
 
+
+        /// <summary>
+        /// Returns a single customer information record for a customer id.
+        /// </summary>
+        /// <param name="customerId"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("{customerId}")]
+        [Produces("application/json")]
+        [ProducesResponseType(typeof(GetSingleCustomerInformationResponse), 200)]
+        [ProducesResponseType(typeof(CustomerInformationBadRequest), 400)]
+        [ProducesResponseType(typeof(NotFoundResult), 404)]
+        public IActionResult GetCustomerInformationByCustomerId([FromRoute] string customerId)
+        {
+            //return new BadRequestObjectResult(new CustomerInformationBadRequest() { status = "failed", errors= [] })
+            return new JsonResult(new CustomerInformation()) { StatusCode = 501 };
+        }
+    }
+
+    internal class CustomerInformationBadRequest //: BadRequestResult
+    {
+        public string status;
+        public List<string> errors;
     }
 }

@@ -6,56 +6,60 @@ using System.Threading.Tasks;
 namespace customer_information_api.V1.Domain
 {
     public class CustomerInformation
-    { 
-        public string Title { get; set; }
-        public string Forenames { get; set; }
-        public string LastName { get; set; }
-        public DateTime DateOfBirth { get; set; }
-        public string ContactNumber { get; set; }
-        public DateTime DateCreated { get; set; }
-        public string CallerNotes { get; set; }
-        public DateTime DateModified { get; set; }
-        public string ModifiedByUser { get; set; }
-        public string NationalInsuranceNumber { get; set; }
-        public string ModificationType { get; set; }
-        public string PersonType { get; set; }
-        public string EmailAddress { get; set; }
-        public int Uprn { get; set; }
-        public int ClientId { get; set; }
-        public string CorrespondanceName { get; set; }
-        public string StatusFG { get; set; }
-        public string GenderFG { get; set; }
-        public int UhContact { get; set; }
-        public string TenRef { get; set; }
+    {
+#pragma warning disable IDE1006 // Naming Styles
+        public int contactId { get; set; }
+        public string title { get; set; }
+        public string forenames { get; set; }
+        public string surname { get; set; }
+        public DateTime dateCreated { get; set; }
+        public string callerNotes { get; set; }
+        public DateTime dateModified { get; set; }
+        public string modifiedBy { get; set; }
+        public string nationalInsuranceNumber { get; set; }
+        public DateTime dateOfBirth { get; set; }
+        public string modificationType { get; set; }
+        public string personType { get; set; }
+        public string emailAddress { get; set; }
+        public int modificationProcess { get; set; }
+        public int uprn { get; set; }
+        public int clientId { get; set; }
+        public string correspondanceName { get; set; }
+        public string isRecordActive { get; set; }
+        public string gender { get; set; }
+        public int uhContact { get; set; }
+        public string tenancyRef { get; set; }
 
         public override bool Equals(object obj)
         {
             CustomerInformation customerInformation = obj as CustomerInformation;
             if (customerInformation != null)
             {
-                return string.Equals(Title,customerInformation.Title) &&
-                       string.Equals(Forenames, customerInformation.Forenames) &&
-                       string.Equals(LastName,customerInformation.LastName) &&
-                       DateOfBirth.Equals(customerInformation.DateOfBirth) &&
-                       string.Equals(ContactNumber,customerInformation.ContactNumber) &&
-                       DateCreated.Equals(customerInformation.DateCreated) &&
-                       string.Equals(CallerNotes, customerInformation.CallerNotes) &&
-                       DateModified.Equals(customerInformation.DateModified) &&
-                       string.Equals(ModifiedByUser, customerInformation.ModifiedByUser) &&
-                       string.Equals(NationalInsuranceNumber,customerInformation.NationalInsuranceNumber) &&
-                       string.Equals(ModificationType, customerInformation.ModificationType) &&
-                       string.Equals(PersonType,customerInformation.PersonType) &&
-                       string.Equals(EmailAddress,customerInformation.EmailAddress) &&
-                       Uprn == customerInformation.Uprn &&
-                       ClientId == customerInformation.ClientId &&
-                       string.Equals(CorrespondanceName,customerInformation.CorrespondanceName) &&
-                       string.Equals(StatusFG,customerInformation.StatusFG) &&
-                       string.Equals(GenderFG,customerInformation.GenderFG) &&
-                       UhContact == customerInformation.UhContact &&
-                       string.Equals(TenRef,customerInformation.TenRef);
+                return string.Equals(contactId, customerInformation.contactId) &&
+                       string.Equals(title, customerInformation.title) &&
+                       string.Equals(forenames, customerInformation.forenames) &&
+                       string.Equals(surname, customerInformation.surname) &&
+                       dateCreated.Equals(customerInformation.dateCreated) &&
+                       string.Equals(callerNotes, customerInformation.callerNotes) &&
+                       dateModified.Equals(customerInformation.dateModified) &&
+                       string.Equals(modifiedBy, customerInformation.modifiedBy) &&
+                       string.Equals(nationalInsuranceNumber, customerInformation.nationalInsuranceNumber) &&
+                       dateOfBirth.Equals(customerInformation.dateOfBirth) &&
+                       string.Equals(modificationType, customerInformation.modificationType) &&
+                       string.Equals(personType, customerInformation.personType) &&
+                       string.Equals(emailAddress, customerInformation.emailAddress) &&
+                       string.Equals(modificationProcess, customerInformation.modificationProcess) &&
+                       uprn == customerInformation.uprn &&
+                       clientId == customerInformation.clientId &&
+                       string.Equals(correspondanceName, customerInformation.correspondanceName) &&
+                       string.Equals(isRecordActive, customerInformation.isRecordActive) &&
+                       string.Equals(gender, customerInformation.gender) &&
+                       uhContact == customerInformation.uhContact &&
+                       string.Equals(tenancyRef, customerInformation.tenancyRef);
             }
             return false;
         }
+        #pragma warning restore IDE1006 // Naming Styles
     }
 }
 

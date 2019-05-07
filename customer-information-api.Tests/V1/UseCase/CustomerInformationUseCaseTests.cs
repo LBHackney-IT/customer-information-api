@@ -35,7 +35,7 @@ namespace customer_information_api.Tests.V1.UseCase
 
         }
         [Test]
-        public void customer_information_use_case_should_return_customer_information_response()
+        public void Customer_information_use_case_should_return_customer_information_response()
         {
             //Arrange
             var expectedResult = new List<CustomerInformation>(){new CustomerInformation()};
@@ -63,8 +63,8 @@ namespace customer_information_api.Tests.V1.UseCase
         public void ExecuteReturnsACorrectListOfCustomerInformation(string firstName, string lastName)
         {
             CustomerInformation customerInformationA = CustomerInformationHelper.CreateCustomerInformation();
-            customerInformationA.Forenames = firstName;
-            customerInformationA.LastName = lastName;
+            customerInformationA.forenames = firstName;
+            customerInformationA.surname = lastName;
 
             CustomerInformation customerInformationB = CustomerInformationHelper.CreateCustomerInformation();
 
@@ -75,8 +75,8 @@ namespace customer_information_api.Tests.V1.UseCase
             var expectedResult = useCase.Execute(request);
 
             Assert.AreEqual(expectedResult.result,expectedGatewayResult);
-            Assert.AreEqual(expectedResult.result.First().Forenames,firstName);
-            Assert.AreEqual(expectedResult.result.First().LastName, lastName);
+            Assert.AreEqual(expectedResult.result.First().forenames,firstName);
+            Assert.AreEqual(expectedResult.result.First().surname, lastName);
         }
 
         [Test]

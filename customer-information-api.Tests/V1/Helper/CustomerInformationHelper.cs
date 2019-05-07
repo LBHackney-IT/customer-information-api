@@ -14,26 +14,27 @@ namespace customer_information_api.Tests.V1.Helper
             Faker faker = new Faker();
             CustomerInformation customerInformation = new CustomerInformation()
             {
-                PersonType = faker.Random.Hash(10),
-                Uprn = faker.Random.Int(5),
-                ModifiedByUser = faker.Random.Hash(10),
-                CorrespondanceName = faker.Random.Hash(20),
-                GenderFG = faker.Random.Hash(1),
-                LastName = faker.Name.LastName(),
-                DateCreated = faker.Date.Past(),
-                Forenames = faker.Name.FirstName(),
-                ContactNumber = faker.Random.Hash(5),
-                CallerNotes = faker.Random.Hash(50),
-                ClientId = faker.Random.Int(5),
-                ModificationType = faker.Random.Hash(10),
-                EmailAddress = faker.Random.AlphaNumeric(20),
-                NationalInsuranceNumber = faker.Random.AlphaNumeric(9),
-                Title = faker.Random.Hash(2),
-                DateModified = faker.Date.Past(),
-                StatusFG = faker.Random.Hash(5),
-                DateOfBirth = faker.Date.Past(),
-                TenRef = faker.Random.Hash(10),
-                UhContact = faker.Random.Int(5)
+                contactId = faker.Random.Int(5),
+                title = faker.Random.Hash(2),
+                forenames = faker.Name.FirstName(),
+                surname = faker.Name.LastName(),
+                dateCreated = faker.Date.Past(),
+                callerNotes = faker.Random.Hash(50),
+                dateModified = faker.Date.Past(),
+                modifiedBy = faker.Random.Hash(10),
+                nationalInsuranceNumber = faker.Random.AlphaNumeric(9),
+                dateOfBirth = faker.Date.Past(),
+                modificationType = faker.Random.Hash(10),
+                personType = faker.Random.Hash(10),
+                emailAddress = faker.Random.AlphaNumeric(20),
+                modificationProcess = faker.Random.Int(40),
+                uprn = faker.Random.Int(5),
+                clientId = faker.Random.Int(5),
+                correspondanceName = faker.Random.Hash(20),
+                isRecordActive = faker.Random.Hash(5),
+                gender = faker.Random.Hash(1),
+                uhContact = faker.Random.Int(5),
+                tenancyRef = faker.Random.Hash(10)
             };
             return customerInformation;
         }
