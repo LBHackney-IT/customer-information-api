@@ -52,22 +52,21 @@ namespace customer_information_api.V1.Controllers
         /// <summary>
         /// Returns a single customer information record for a customer id.
         /// </summary>
-        /// <param name="customerId"></param>
+        /// <param name="customer_id"></param>
         /// <returns></returns>
         [HttpGet]
-        [Route("{customerId}")]
+        [Route("{customer_id}")]
         [Produces("application/json")]
         [ProducesResponseType(typeof(GetSingleCustomerInformationResponse), 200)]
         [ProducesResponseType(typeof(CustomerInformationBadRequest), 400)]
         [ProducesResponseType(typeof(NotFoundResult), 404)]
-        public IActionResult GetCustomerInformationByCustomerId([FromRoute] string customerId)
+        public IActionResult GetCustomerInformationByCustomerId([FromRoute] string customer_id)
         {
-            //return new BadRequestObjectResult(new CustomerInformationBadRequest() { status = "failed", errors= [] })
             return new JsonResult(new CustomerInformation()) { StatusCode = 501 };
         }
     }
 
-    internal class CustomerInformationBadRequest //: BadRequestResult
+    internal class CustomerInformationBadRequest
     {
         public string status;
         public List<string> errors;
