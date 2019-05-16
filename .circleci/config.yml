@@ -12,6 +12,8 @@ commands:
         type: string
       image-name:
         type: string
+      cluster-name:
+        type: string
     steps:
       - aws-cli/install
       - aws-cli/configure:
@@ -34,7 +36,7 @@ commands:
             ecs-deploy \
             --timeout 104400 \
             --region $AWS_REGION \
-            --cluster $CLUSTER_NAME \
+            --cluster << parameters.cluster-name >> \
             --service-name << parameters.service-name >> \
             --image << parameters.image-name >> \
             --timeout 104400 \
@@ -68,6 +70,7 @@ jobs:
       - deploy-env:
           service-name: 'customer-information-api-development'
           image-name: "$AWS_ECR_HOST/$AWS_ECR_PATH:$CIRCLE_SHA1"
+          cluster-name: "$CLUSTER_DEVELOPMENT"
 
   deploy-to-staging:
     docker:
@@ -76,6 +79,7 @@ jobs:
       - deploy-env:
           service-name: 'customer-information-api-staging'
           image-name: "$AWS_ECR_HOST/$AWS_ECR_PATH:$CIRCLE_SHA1"
+          cluster-name: "$CLUSTER_STAGING"
 
   deploy-to-production:
     docker:
@@ -84,6 +88,7 @@ jobs:
       - deploy-env:
           service-name: 'customer-information-api-production'
           image-name: "$AWS_ECR_HOST/$AWS_ECR_PATH:$CIRCLE_SHA1"
+          cluster-name: "$CLUSTER_PRODUCTION"
 
 workflows:
   build-and-deploy:
