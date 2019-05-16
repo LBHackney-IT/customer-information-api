@@ -30,7 +30,7 @@ commands:
             --region $AWS_REGION \    
             << parameters.cluster-name >> \            
             << parameters.service-name >> \
-            -t << parameters.image-tag >>
+            -t 50470948bca80cd033a9501c4b2785fdf369ad86
           no_output_timeout: 30m
 
 jobs:
@@ -83,28 +83,28 @@ jobs:
 workflows:
   build-and-deploy:
       jobs:
-      - check
-      - aws-ecr/build_and_push_image:
-          name: build_and_push_image
-          dockerfile: ./customer-information-api/Dockerfile
-          path: ./customer-information-api
-          account-url: AWS_ECR_HOST
-          repo: $AWS_ECR_PATH
-          aws-access-key-id: AWS_ID_KEY
-          aws-secret-access-key: AWS_SECRET_KEY
-          region: AWS_REGION
-          tag: "${CIRCLE_SHA1}"
-          filters:
-            branches:
-              only: master
+#     - check
+#     - aws-ecr/build_and_push_image:
+#         name: build_and_push_image
+#         dockerfile: ./customer-information-api/Dockerfile
+#         path: ./customer-information-api
+#         account-url: AWS_ECR_HOST
+#         repo: $AWS_ECR_PATH
+#         aws-access-key-id: AWS_ID_KEY
+#         aws-secret-access-key: AWS_SECRET_KEY
+#         region: AWS_REGION
+#         tag: "${CIRCLE_SHA1}"
+#         filters:
+#           branches:
+#             only: master
 
       - deploy-to-development:
-          requires:
-            - check
-            - build_and_push_image
+   #      requires:
+   #        - check
+   #        - build_and_push_image
           filters:
             branches:
-              only: master
+              only: TestCircleCI
 
       - permit-staging-release:
           type: approval
