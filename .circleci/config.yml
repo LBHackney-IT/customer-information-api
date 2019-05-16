@@ -24,24 +24,15 @@ commands:
           command: |
             ecs deploy \
             --no-deregister \
-            --access-key-id AKIAIELSJYQET3UAZYGQ \
-            --secret-access-key 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 \
+            --access-key-id $AWS_ID_KEY \
+            --secret-access-key $AWS_SECRET_KEY \
             --timeout 1800 \
-            --region eu-west-2 \
-            hackney-apps-development \
-            customer-api-development \
+            --region $AWS_REGION \    
+            << parameters.cluster-name >> \            
+            << parameters.service-name >> \
             -t 50470948bca80cd033a9501c4b2785fdf369ad86
           no_output_timeout: 30m
 
-           #           ecs deploy \
- #           --no-deregister \
- #           --access-key-id $AWS_ID_KEY \
- #           --secret-access-key $AWS_SECRET_KEY \
- #           --timeout 1800 \
- #           --region $AWS_REGION \    
- #           << parameters.cluster-name >> \            
- #           << parameters.service-name >> \
- #           -t 50470948bca80cd033a9501c4b2785fdf369ad86
 jobs:
   check:
     docker:
