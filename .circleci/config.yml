@@ -6,41 +6,31 @@ orbs:
 
 commands:
   deploy-env:
-    description: "Sets up aws cli and ecs-deploy to update a service with a target docker image"
+    description: "Sets ecs-deploy to update a service with a target docker image"
     parameters:
       service-name:
         type: string
-      image-name:
+      image-tag:
         type: string
       cluster-name:
         type: string
     steps:
-      - aws-cli/install
-      - aws-cli/configure:
-          aws-access-key-id: AWS_ID_KEY
-          aws-secret-access-key: AWS_SECRET_KEY
-          aws-region: AWS_REGION
-      - run:
-          name: Install jq
-          command: |
-            sudo apt update
-            sudo apt install jq
       - run:
           name: Install ecs deploy
           command: |
-              curl https://raw.githubusercontent.com/silinternational/ecs-deploy/master/ecs-deploy | sudo tee /usr/bin/ecs-deploy
-              sudo chmod +x /usr/bin/ecs-deploy
+            sudo pip install ecs-deploy
       - run:
           name: Premote target image
           command: |
-            ecs-deploy \
-            --timeout 104400 \
-            --region $AWS_REGION \
-            --cluster << parameters.cluster-name >> \
-            --service-name << parameters.service-name >> \
-            --image << parameters.image-name >> \
-            --timeout 104400 \
-            --use-latest-task-def
+            ecs deploy \
+            --no-deregister \
+            --access-key-id $AWS_ID_KEY \
+            --secret-access-key $AWS_SECRET_KEY \
+            --timeout 1800 \
+            --region $AWS_REGION \       
+            << parameters.service-name >> \
+            << parameters.image-tag >> \
+            << parameters.cluster-name >> 
           no_output_timeout: 30m
 
 jobs:
@@ -69,7 +59,7 @@ jobs:
     steps:
       - deploy-env:
           service-name: 'customer-api-development'
-          image-name: "$AWS_ECR_HOST/$AWS_ECR_PATH:$CIRCLE_SHA1"
+          image-tag: "$CIRCLE_SHA1"
           cluster-name: "$CLUSTER_DEVELOPMENT"
 
   deploy-to-staging:
@@ -78,7 +68,7 @@ jobs:
     steps:
       - deploy-env:
           service-name: 'customer-information-api-staging'
-          image-name: "$AWS_ECR_HOST/$AWS_ECR_PATH:$CIRCLE_SHA1"
+          image-tag: "$CIRCLE_SHA1"
           cluster-name: "$CLUSTER_STAGING"
 
   deploy-to-production:
@@ -87,7 +77,7 @@ jobs:
     steps:
       - deploy-env:
           service-name: 'customer-information-api-production'
-          image-name: "$AWS_ECR_HOST/$AWS_ECR_PATH:$CIRCLE_SHA1"
+          image-tag: "$CIRCLE_SHA1"
           cluster-name: "$CLUSTER_PRODUCTION"
 
 workflows:
