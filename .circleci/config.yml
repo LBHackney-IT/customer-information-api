@@ -59,7 +59,7 @@ jobs:
     steps:
       - deploy-env:
           cluster-name: hackney-apps-development
-          service-name: 'customer-api-development'
+          service-name: 'customer-information-api-development'
           image-tag: "$CIRCLE_SHA1"
 
   deploy-to-staging:
