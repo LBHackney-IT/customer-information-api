@@ -8,11 +8,11 @@ commands:
   deploy-env:
     description: "Sets ecs-deploy to update a service with a target docker image"
     parameters:
-      cluster-name:
-        type: string
       service-name:
         type: string
       image-tag:
+        type: string
+      cluster-name:
         type: string
     steps:
       - run:
@@ -27,10 +27,10 @@ commands:
             --access-key-id $AWS_ID_KEY \
             --secret-access-key $AWS_SECRET_KEY \
             --timeout 1800 \
-            --region $AWS_REGION \
-            << parameters.cluster-name >> \
+            --region $AWS_REGION \       
             << parameters.service-name >> \
-            -t << parameters.image-tag >>
+            -t << parameters.image-tag >> \
+            << parameters.cluster-name >> 
           no_output_timeout: 30m
 
 jobs:
