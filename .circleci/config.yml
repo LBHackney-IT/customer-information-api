@@ -68,7 +68,7 @@ jobs:
       - image: circleci/python:3.7
     steps:
       - deploy-env:
-          service-name: 'customer-information-api-development'
+          service-name: 'customer-api-development'
           image-name: "$AWS_ECR_HOST/$AWS_ECR_PATH:$CIRCLE_SHA1"
           cluster-name: "$CLUSTER_DEVELOPMENT"
 
