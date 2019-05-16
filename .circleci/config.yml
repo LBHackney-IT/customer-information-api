@@ -8,11 +8,11 @@ commands:
   deploy-env:
     description: "Sets ecs-deploy to update a service with a target docker image"
     parameters:
+      cluster-name:
+        type: string
       service-name:
         type: string
       image-tag:
-        type: string
-      cluster-name:
         type: string
     steps:
       - run:
@@ -58,9 +58,9 @@ jobs:
       - image: circleci/python:3.7
     steps:
       - deploy-env:
+          cluster-name: "$CLUSTER_DEVELOPMENT"
           service-name: 'customer-api-development'
           image-tag: "$CIRCLE_SHA1"
-          cluster-name: "$CLUSTER_DEVELOPMENT"
 
   deploy-to-staging:
     docker:
