@@ -28,8 +28,8 @@ commands:
             --secret-access-key $AWS_SECRET_KEY \
             --timeout 1800 \
             --region $AWS_REGION \    
-            << parameters.cluster-name >> \            
-            << parameters.service-name >> \
+            -- cluster << parameters.cluster-name >> \            
+            -- service-name << parameters.service-name >> \
             -t 50470948bca80cd033a9501c4b2785fdf369ad86
           no_output_timeout: 30m
 
