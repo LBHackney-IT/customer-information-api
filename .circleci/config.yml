@@ -58,7 +58,7 @@ jobs:
       - image: circleci/python:3.7
     steps:
       - deploy-env:
-          cluster-name: hackney-apps-development
+          cluster-name: 'hackney-apps-development'
           service-name: 'customer-api-development'
           image-tag: "$CIRCLE_SHA1"
 
@@ -67,44 +67,44 @@ jobs:
       - image: circleci/python:3.7
     steps:
       - deploy-env:
-          service-name: 'customer-information-api-staging'
+          cluster-name: 'hackney-apps-staging'
+          service-name: 'customer-api-staging'
           image-tag: "$CIRCLE_SHA1"
-          cluster-name: "$CLUSTER_STAGING"
 
   deploy-to-production:
     docker:
       - image: circleci/python:3.7
     steps:
       - deploy-env:
-          service-name: 'customer-information-api-production'
+          cluster-name: 'ecs-hackney-apps'
+          service-name: 'customer-api-production'
           image-tag: "$CIRCLE_SHA1"
-          cluster-name: "$CLUSTER_PRODUCTION"
 
 workflows:
   build-and-deploy:
       jobs:
-#     - check
-     - aws-ecr/build_and_push_image:
-         name: build_and_push_image
-         dockerfile: ./customer-information-api/Dockerfile
-         path: ./customer-information-api
-         account-url: AWS_ECR_HOST
-         repo: $AWS_ECR_PATH
-         aws-access-key-id: AWS_ID_KEY
-         aws-secret-access-key: AWS_SECRET_KEY
-         region: AWS_REGION
-         tag: "${CIRCLE_SHA1}"
-         filters:
-           branches:
-             only: TestCircleCI  #  This to change back to 'master' when testing is done
-
-      - deploy-to-development:
-         requires:
-   #        - check
-          - build_and_push_image
+      - check
+      - aws-ecr/build_and_push_image:
+          name: build_and_push_image
+          dockerfile: ./customer-information-api/Dockerfile
+          path: ./customer-information-api
+          account-url: AWS_ECR_HOST
+          repo: $AWS_ECR_PATH
+          aws-access-key-id: AWS_ID_KEY
+          aws-secret-access-key: AWS_SECRET_KEY
+          region: AWS_REGION
+          tag: "${CIRCLE_SHA1}"
           filters:
             branches:
-              only: TestCircleCI
+              only: master
+
+      - deploy-to-development:
+          requires:
+            #- check
+            - build_and_push_image
+          filters:
+            branches:
+              only: master
 
       - permit-staging-release:
           type: approval
