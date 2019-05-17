@@ -48,10 +48,10 @@ jobs:
       - setup_remote_docker
       - run:
           name: build
-          command: docker-compose build customer-api-test
+          command: docker-compose build customer-information-api-test
       - run:
           name: Run tests
-          command: docker-compose up customer-api-test
+          command: docker-compose up customer-information-api-test
 
   deploy-to-development:
     docker:
