@@ -96,15 +96,15 @@ workflows:
           tag: "${CIRCLE_SHA1}"
           filters:
             branches:
-              only: master
+              only: TestCircleCI # For testing only.  Change back to 'master' before PR
 
       - deploy-to-development:
           requires:
-            #- check
+            - check
             - build_and_push_image
           filters:
             branches:
-              only: master
+              only: TestCircleCI # For testing only.  Change back to 'master' before PR
 
       - permit-staging-release:
           type: approval
