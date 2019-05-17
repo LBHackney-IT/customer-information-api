@@ -8,11 +8,11 @@ commands:
   deploy-env:
     description: "Sets ecs-deploy to update a service with a target docker image"
     parameters:
+      cluster-name:
+        type: string
       service-name:
         type: string
       image-tag:
-        type: string
-      cluster-name:
         type: string
     steps:
       - run:
@@ -27,8 +27,8 @@ commands:
             --access-key-id $AWS_ID_KEY \
             --secret-access-key $AWS_SECRET_KEY \
             --timeout 1800 \
-            --region $AWS_REGION \    
-            << parameters.cluster-name >> \            
+            --region $AWS_REGION \
+            << parameters.cluster-name >> \
             << parameters.service-name >> \
             -t << parameters.image-tag >>
           no_output_timeout: 30m
@@ -58,27 +58,27 @@ jobs:
       - image: circleci/python:3.7
     steps:
       - deploy-env:
+          cluster-name: 'hackney-apps-development'
           service-name: 'customer-api-development'
           image-tag: "$CIRCLE_SHA1"
-          cluster-name: "$CLUSTER_DEVELOPMENT"
 
   deploy-to-staging:
     docker:
       - image: circleci/python:3.7
     steps:
       - deploy-env:
-          service-name: 'customer-information-api-staging'
+          cluster-name: 'hackney-apps-staging'
+          service-name: 'customer-api-staging'
           image-tag: "$CIRCLE_SHA1"
-          cluster-name: "$CLUSTER_STAGING"
 
   deploy-to-production:
     docker:
       - image: circleci/python:3.7
     steps:
       - deploy-env:
-          service-name: 'customer-information-api-production'
+          cluster-name: 'ecs-hackney-apps'
+          service-name: 'customer-api-production'
           image-tag: "$CIRCLE_SHA1"
-          cluster-name: "$CLUSTER_PRODUCTION"
 
 workflows:
   build-and-deploy:
