@@ -12,7 +12,7 @@ using Microsoft.Extensions.Logging;
 namespace customer_information_api.V1.Controllers
 {
     [ApiVersion("1")]
-    [Route("api/v1/property")]
+    [Route("api/v1/customer")]
     [ApiController]
     [Produces("application/json")]
     public class CustomerInformationController : BaseController
