@@ -8,6 +8,7 @@ namespace customer_information_api.V1.Infrastructure
         {
         }
 
-      //  public DbSet<UhTransaction> UTransactions { get; set; }
+        public DbSet<UhCustomerInformation> uCustomerInformations { get; set; }
+
     }
 }
