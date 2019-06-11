@@ -42,8 +42,6 @@ namespace customer_information_api.Tests.V1.Gateways
         public void CallingTheGatewayShouldReturnACollectionOfCustomers()
         {
             CustomerInformation customerInformation = CustomerInformationHelper.CreateCustomerInformation();
-            DbSet<CustomerInformation>
-            _uhContext.Database.
         }
 
 
