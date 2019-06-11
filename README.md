@@ -13,9 +13,9 @@ Customer Information API brings all the customer information records for citizen
 
 ## Required Environment Variables
 
-``` UH_URL
-    SENTRY_URL
-    NEW_RELIC_APP_NAME
+```UH_URL
+   SENTRY_URL
+   NEW_RELIC_APP_NAME
 ```
 
 ## Contributing
