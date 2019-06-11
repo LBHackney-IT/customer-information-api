@@ -1,6 +1,6 @@
-# LBH Transactions API
+# LBH Customer Information API
 
-Transactions API brings all the transaction records for citizens from Universal Housing backoffice.
+Customer Information API brings all the customer information records for citizens from the Universal Housing backoffice system.
 
 ## Stack
 
@@ -10,6 +10,12 @@ Transactions API brings all the transaction records for citizens from Universal 
 ## Dependencies
 
 - Universal Housing Simulator
+
+## Required Environment Variables
+
+``` UH_URL
+``` SENTRY_URL
+``` NEW_RELIC_APP_NAME
 
 ## Contributing
 
@@ -22,7 +28,7 @@ Transactions API brings all the transaction records for citizens from Universal 
 
 ### Development
 
-To serve the application, run it using your IDE of choice, we use Visual Studio CE and JetBrains Rider on Mac. 
+To serve the application, run it using your IDE of choice, we use Visual Studio CE and JetBrains Rider on Mac.
 
 The application can also be served locally using docker:
 1.  Add you security credentials to AWS CLI.
@@ -48,7 +54,7 @@ Then we have an automated six step deployment process, which runs in CircleCI.
 
 1. Automated tests (nUnit) are run to ensure the release is of good quality.
 2. The application is deployed to development automatically, where we check our latest changes work well.
-3. We manually confirm a staging deployment in the CircleCI workflow once we're happy with our changes in development. 
+3. We manually confirm a staging deployment in the CircleCI workflow once we're happy with our changes in development.
 4. The application is deployed to staging.
 5. We manually confirm a production deployment in the CircleCI workflow once we're happy with our changes in staging.
 6. The application is deployed to production.
