@@ -16,32 +16,29 @@ namespace customer_information_api.Tests.V1.Helper
         {
             Faker _faker = new Faker();
             UhCustomerInformation UhCustomerInformation = CopyCustomerInformationFields(customerInformation);
-            UhCustomerInformation.Id = _faker.Random.Int();
-            UhCustomerInformation.PropRef = _faker.Random.AlphaNumeric(length: 12);
-            UhCustomerInformation.TagRef = _faker.Random.AlphaNumeric(length: 9);
-            UhCustomerInformation.transno = _faker.Random.Int();
-            UhCustomerInformation.line_no = _faker.Random.Int();
-            UhCustomerInformation.adjustment = _faker.Random.Bool();
-            UhCustomerInformation.apportion = _faker.Random.Bool();
-            UhCustomerInformation.prop_deb = _faker.Random.Bool();
-            UhCustomerInformation.none_rent = _faker.Random.Bool();
-            UhCustomerInformation.receipted = _faker.Random.Bool();
-            UhCustomerInformation.vat = _faker.Random.Bool();
+            UhCustomerInformation.Title = _faker.Random.AlphaNumeric(length:3);
+            UhCustomerInformation.Forename = _faker.Random.AlphaNumeric(length: 12);
+            UhCustomerInformation.Surname = _faker.Random.AlphaNumeric(length: 9);
+            UhCustomerInformation.Ni_No = _faker.Random.AlphaNumeric(length: 9);
+            UhCustomerInformation.DOB = _faker.Date.Past();
+            UhCustomerInformation.Gender = _faker.Random.AlphaNumeric(length: 9);
+            UhCustomerInformation.HouseRef = _faker.Random.AlphaNumeric(length: 9);
 
             return UhCustomerInformation;
         }
 
-//        private static UhCustomerInformation CopyTransactionFields(Transaction transaction)
-//        {
-//            return new UhCustomerInformation
-//            {
-//                Amount = transaction.Amount,
-//                Code = transaction.Code,
-//                Date = transaction.Date,
-//                Comments = transaction.Comments,
-//                FinancialYear = transaction.FinancialYear,
-//                PeriodNumber = transaction.PeriodNumber,
-//            };
-//        }
+        private static UhCustomerInformation CopyCustomerInformationFields(CustomerInformation customerInformation)
+        {
+            return new UhCustomerInformation
+            {
+                Title = customerInformation.title,
+                Forename = customerInformation.forenames,
+                Surname = customerInformation.surname,
+                Ni_No = customerInformation.nationalInsuranceNumber,
+                DOB = customerInformation.dateOfBirth,
+                Gender = customerInformation.gender,
+                HouseRef = null
+            };
+        }
     }
 }
