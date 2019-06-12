@@ -18,7 +18,7 @@ namespace customer_information_api.V1.Domain
         public DateTime dateModified { get; set; }
         public string modifiedBy { get; set; }
         public string nationalInsuranceNumber { get; set; }
-        public DateTime dateOfBirth { get; set; }
+        public DateTime? dateOfBirth { get; set; }
         public string modificationType { get; set; }
         public string personType { get; set; }
         public string emailAddress { get; set; }
