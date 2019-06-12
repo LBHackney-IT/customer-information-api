@@ -20,9 +20,22 @@ namespace customer_information_api.V1.Gateways
         }
         public List<CustomerInformation> GetCustomerInformationByTagReference(string tagReference)
         {
-            var customerInformation = new List<CustomerInformation>();
-
-            return customerInformation;
+            List<CustomerInformation> customers = _uhContext.UhAgreements.Where(a => a.TagRef == tagReference)
+                .Join(_uhContext.UhCustomerInformations, a => a.HouseRef, c => c.HouseRef, (a, c) =>
+                new CustomerInformation
+                {
+                    houseRef = a.HouseRef,
+                    title = c.Title,
+                    forenames = c.Forename,
+                    surname = c.Surname,
+                    nationalInsuranceNumber = c.Ni_No,
+                    dateOfBirth = c.DOB,
+                    gender = c.Gender,
+                    tenancyRef = a.TagRef
+                })
+                .ToList();
+ 
+            return customers;
         }
     }
 
