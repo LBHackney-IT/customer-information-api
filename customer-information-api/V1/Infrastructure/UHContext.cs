@@ -8,8 +8,8 @@ namespace customer_information_api.V1.Infrastructure
         {
         }
 
-        public DbSet<UhCustomerInformation> uHCustomerInformations { get; set; }
-        public DbSet<UhAgreement> uHAgreements { get; set; }
+        public DbSet<UhCustomerInformation> UhCustomerInformations { get; set; }
+        public DbSet<UhAgreement> UhAgreements { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) //fluent API
         {
