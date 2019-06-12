@@ -32,50 +32,75 @@ namespace customer_information_api.Tests.V1.Gateways
         }
 
         [Test]
-        public void CallingTheGatewayShouldReturnNullIfNoMatches()
+        public void GivenAnUnmatchingTagRef_WhenAGatewayIsCalled_ThenItReturnsAnEmptyCollectionOfCustomers()
         {
-            var  response = _classUnderTest.GetCustomerInformationByTagReference("Test");
+            //arrange
+
+            //act
+            var response = _classUnderTest.GetCustomerInformationByTagReference("Test");
+
+            //assert
+            Assert.NotNull(response);
+            Assert.IsInstanceOf<IList<CustomerInformation>>(response); //check if it's a collection
+
             Assert.AreEqual(0, response.Count);
             Assert.AreEqual(null, response.FirstOrDefault());
         }
 
-        [Test]
-        public void CallingTheGatewayShouldReturnACollectionOfCustomers()
+        [TestCase("000125/01", "000125")]
+        [TestCase("000778/03", "000778")]
+        public void GivenAMatchingTagRef_WhenAGatewayIsCalled_ThenItReturnsACollectionOfMathcingCustomers(string tagRef, string houseRef)
         {
-            CustomerInformation customerInformation = CustomerInformationHelper.CreateCustomerInformation();
-
-            UhCustomerInformation dbCustomerInformation =
-                UhCustomerInformationHelper.CreateUhCustomerInformationFrom(customerInformation);
-
+            //arrange
             UhAgreement dbAgreement = new UhAgreement()
             {
-                HouseRef = dbCustomerInformation.HouseRef,
-                TagRef = "000035/01",
+                HouseRef = houseRef,
+                TagRef = tagRef,
                 Active = _faker.Random.Bool(),
                 AdditionalDebit = _faker.Random.Bool(),
-                Committee =  _faker.Random.Bool(),
-                CourtApp =  _faker.Random.Bool(),
+                Committee = _faker.Random.Bool(),
+                CourtApp = _faker.Random.Bool(),
                 DtStamp = _faker.Date.Past(),
-                Eviction =  _faker.Random.Bool(),
-                FdCharge =  _faker.Random.Bool(),
-                FreeActive =  _faker.Random.Bool(),
-                OtherAccounts =  _faker.Random.Bool(),
-                Terminated =  _faker.Random.Bool(),
+                Eviction = _faker.Random.Bool(),
+                FdCharge = _faker.Random.Bool(),
+                FreeActive = _faker.Random.Bool(),
+                OtherAccounts = _faker.Random.Bool(),
+                Terminated = _faker.Random.Bool(),
                 IntroDate = _faker.Date.Past(),
-                ReceiptCard =  _faker.Random.Bool(),
+                ReceiptCard = _faker.Random.Bool(),
                 IntroExtDate = _faker.Date.Past(),
                 PotentialEndDate = _faker.Date.Soon(),
                 UPaymentExpected = _faker.Random.AlphaNumeric(3)
             };
-            _uhContext.uHCustomerInformations.Add(dbCustomerInformation);
+
+            UhCustomerInformation dbCustomer1 =
+                UhCustomerInformationHelper.CreateUhCustomerInformation(); //customer1
+            dbCustomer1.HouseRef = houseRef;
+
+            UhCustomerInformation dbCustomer2 =
+                UhCustomerInformationHelper.CreateUhCustomerInformation(); //customer2
+            dbCustomer2.HouseRef = houseRef;
+
+
+            _uhContext.uHCustomerInformations.Add(dbCustomer1);
+            _uhContext.uHCustomerInformations.Add(dbCustomer2);
             _uhContext.uHAgreements.Add(dbAgreement);
             _uhContext.SaveChanges();
 
-            var response = _classUnderTest.GetCustomerInformationByTagReference(dbCustomerInformation.HouseRef);
-            Assert.NotNull(response.FirstOrDefault());
-            Assert.AreEqual(dbAgreement.TagRef, response.FirstOrDefault().tenancyRef);
+            //act
+            var response = _classUnderTest.GetCustomerInformationByTagReference(tagRef);
+
+            //assert
+            Assert.NotNull(response);
+            Assert.IsInstanceOf<IList<CustomerInformation>>(response); //check if it's a collection
+
+            Assert.AreEqual(2, response.Count);
+
+            Assert.AreEqual(tagRef, response[0].tenancyRef);
+            Assert.AreEqual(tagRef, response[1].tenancyRef);
+
+            Assert.AreEqual(houseRef, response[0].houseRef);
+            Assert.AreEqual(houseRef, response[1].houseRef);
         }
-
-
     }
 }
