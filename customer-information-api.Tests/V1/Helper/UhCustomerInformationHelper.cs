@@ -9,36 +9,28 @@ namespace customer_information_api.Tests.V1.Helper
     {
         public static UhCustomerInformation CreateUhCustomerInformation()
         {
-            return CreateUhCustomerInformationFrom(CustomerInformationHelper.CreateCustomerInformation());
-        }
-
-        public static UhCustomerInformation CreateUhCustomerInformationFrom(CustomerInformation customerInformation)
-        {
             Faker _faker = new Faker();
-            UhCustomerInformation UhCustomerInformation = CopyCustomerInformationFields(customerInformation);
 
-            UhCustomerInformation.PersonNo = 1;
-            UhCustomerInformation.HouseRef = _faker.Random.AlphaNumeric(10);
-            UhCustomerInformation.OAP = _faker.Random.Bool();
-            UhCustomerInformation.AtRisk = _faker.Random.Bool();
-            UhCustomerInformation.Responsible = _faker.Random.Bool();
-            UhCustomerInformation.FullEd = _faker.Random.Bool();
-            UhCustomerInformation.MemberSid = _faker.Random.Int();
-            UhCustomerInformation.BankAccType = _faker.Random.AlphaNumeric(3);
-            return UhCustomerInformation;
-        }
-
-        private static UhCustomerInformation CopyCustomerInformationFields(CustomerInformation customerInformation)
-        {
-            return new UhCustomerInformation
+            UhCustomerInformation uhCustomerInformation = new UhCustomerInformation()
             {
-                Title = customerInformation.title,
-                Forename = customerInformation.forenames,
-                Surname = customerInformation.surname,
-                Ni_No = customerInformation.nationalInsuranceNumber,
-                DOB = customerInformation.dateOfBirth,
-                Gender = customerInformation.gender
+                HouseRef = _faker.Random.AlphaNumeric(10),
+                Title = _faker.Random.Hash(2),
+                Forename = _faker.Random.AlphaNumeric(24),
+                Surname = _faker.Random.AlphaNumeric(20),
+                Ni_No = _faker.Random.AlphaNumeric(9),
+                DOB = _faker.Date.Past(),
+                Gender = _faker.Random.Hash(1),
+
+                PersonNo = _faker.Random.Int(1, 80),
+                OAP = _faker.Random.Bool(),
+                AtRisk = _faker.Random.Bool(),
+                Responsible = _faker.Random.Bool(),
+                FullEd = _faker.Random.Bool(),
+                MemberSid = _faker.Random.Int(),
+                BankAccType = _faker.Random.AlphaNumeric(3)
             };
+
+            return uhCustomerInformation;
         }
     }
 }
