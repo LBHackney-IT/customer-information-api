@@ -8,7 +8,9 @@ namespace customer_information_api.V1.Infrastructure
         {
         }
 
-        public DbSet<UhCustomerInformation> uCustomerInformations { get; set; }
+        public DbSet<UhCustomerInformation> uHCustomerInformations { get; set; }
+        public DbSet<UhAgreement> uHAgreements { get; set; }
+
 
     }
 }
