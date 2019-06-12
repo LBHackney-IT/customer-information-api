@@ -20,10 +20,7 @@ namespace customer_information_api.V1.Gateways
         }
         public List<CustomerInformation> GetCustomerInformationByTagReference(string tagReference)
         {
-            var customerInformation = new List<CustomerInformation>()
-            {
-                new CustomerInformation()
-            };
+            var customerInformation = new List<CustomerInformation>();
 
             return customerInformation;
         }
