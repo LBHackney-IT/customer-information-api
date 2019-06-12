@@ -82,9 +82,9 @@ namespace customer_information_api.Tests.V1.Gateways
             dbCustomer2.HouseRef = houseRef;
 
 
-            _uhContext.uHCustomerInformations.Add(dbCustomer1);
-            _uhContext.uHCustomerInformations.Add(dbCustomer2);
-            _uhContext.uHAgreements.Add(dbAgreement);
+            _uhContext.UhCustomerInformations.Add(dbCustomer1);
+            _uhContext.UhCustomerInformations.Add(dbCustomer2);
+            _uhContext.UhAgreements.Add(dbAgreement);
             _uhContext.SaveChanges();
 
             //act
