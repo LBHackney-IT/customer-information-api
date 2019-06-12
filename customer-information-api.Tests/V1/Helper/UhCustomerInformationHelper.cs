@@ -16,14 +16,15 @@ namespace customer_information_api.Tests.V1.Helper
         {
             Faker _faker = new Faker();
             UhCustomerInformation UhCustomerInformation = CopyCustomerInformationFields(customerInformation);
-            UhCustomerInformation.Title = _faker.Random.AlphaNumeric(length:3);
-            UhCustomerInformation.Forename = _faker.Random.AlphaNumeric(length: 12);
-            UhCustomerInformation.Surname = _faker.Random.AlphaNumeric(length: 9);
-            UhCustomerInformation.Ni_No = _faker.Random.AlphaNumeric(length: 9);
-            UhCustomerInformation.DOB = _faker.Date.Past();
-            UhCustomerInformation.Gender = _faker.Random.AlphaNumeric(length: 9);
-            UhCustomerInformation.HouseRef = _faker.Random.AlphaNumeric(length: 9);
 
+            UhCustomerInformation.PersonNo = 1;
+            UhCustomerInformation.HouseRef = _faker.Random.AlphaNumeric(10);
+            UhCustomerInformation.OAP = _faker.Random.Bool();
+            UhCustomerInformation.AtRisk = _faker.Random.Bool();
+            UhCustomerInformation.Responsible = _faker.Random.Bool();
+            UhCustomerInformation.FullEd = _faker.Random.Bool();
+            UhCustomerInformation.MemberSid = _faker.Random.Int();
+            UhCustomerInformation.BankAccType = _faker.Random.AlphaNumeric(3);
             return UhCustomerInformation;
         }
 
@@ -36,8 +37,7 @@ namespace customer_information_api.Tests.V1.Helper
                 Surname = customerInformation.surname,
                 Ni_No = customerInformation.nationalInsuranceNumber,
                 DOB = customerInformation.dateOfBirth,
-                Gender = customerInformation.gender,
-                HouseRef = null
+                Gender = customerInformation.gender
             };
         }
     }

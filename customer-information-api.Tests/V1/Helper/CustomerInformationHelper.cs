@@ -16,8 +16,8 @@ namespace customer_information_api.Tests.V1.Helper
             {
                 contactId = faker.Random.Int(5),
                 title = faker.Random.Hash(2),
-                forenames = faker.Name.FirstName(),
-                surname = faker.Name.LastName(),
+                forenames = faker.Random.AlphaNumeric(24),
+                surname = faker.Random.AlphaNumeric(20),
                 dateCreated = faker.Date.Past(),
                 callerNotes = faker.Random.Hash(50),
                 dateModified = faker.Date.Past(),
