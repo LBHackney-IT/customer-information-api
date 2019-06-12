@@ -6,15 +6,15 @@ namespace customer_information_api.V1.Infrastructure
     [Table("member")]
     public class UhCustomerInformation
     {
+        public string HouseRef { get; set; } //these get set through fluent API
+        public int PersonNo { get; set; }
         [Column("title")] public string Title { get; set; }
         [Column("forename")] public string Forename { get; set; }
         [Column("surname")] public string Surname { get; set; }
         [Column("ni_no")] public string Ni_No { get; set; }
         [Column("dob")] public DateTime? DOB { get; set; }
         [Column("gender")] public string Gender { get; set; }
-        [Column("person_no")] public int PersonNo { get; set; }
         [Column("oap")] public bool OAP { get; set; }
-        [Key,Column("house_ref")] public string HouseRef { get; set; }
         [Column("at_risk")] public bool AtRisk { get; set; }
         [Column("responsible")] public bool Responsible { get; set; }
         [Column("full_ed")] public bool FullEd { get; set; }
@@ -55,6 +55,7 @@ namespace customer_information_api.V1.Infrastructure
             unchecked
             {
                 var hashCode = (HouseRef != null ? HouseRef.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ PersonNo.GetHashCode();
                 hashCode = (hashCode * 397) ^ (Title != null ? Title.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ Forename.GetHashCode();
                 hashCode = (hashCode * 397) ^ Surname.GetHashCode();
@@ -67,7 +68,6 @@ namespace customer_information_api.V1.Infrastructure
                 hashCode = (hashCode * 397) ^ FullEd.GetHashCode();
                 hashCode = (hashCode * 397) ^ MemberSid.GetHashCode();
                 hashCode = (hashCode * 397) ^ BankAccType.GetHashCode();
-                hashCode = (hashCode * 397) ^ PersonNo.GetHashCode();
                 return hashCode;
             }
         }

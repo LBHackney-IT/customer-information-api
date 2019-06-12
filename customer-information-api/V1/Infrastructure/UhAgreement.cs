@@ -6,7 +6,7 @@ namespace customer_information_api.V1.Infrastructure
     [Table("tenagree")]
     public class UhAgreement
     {
-        [Key,Column("tag_ref")] public string TagRef { get; set; }
+        public string TagRef { get; set; }
         [Column("other_accounts")] public bool OtherAccounts { get; set; }
         [Column("spec_terms")] public bool SpecTerms { get; set; }
         [Column("active")] public bool Active { get; set; }
