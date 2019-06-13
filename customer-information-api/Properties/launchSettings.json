@@ -13,11 +13,6 @@
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "api/v1/healthcheck/ping",
-      "environmentVariables": {
-        "UH_URL": "Value",
-        "NEW_RELIC_APP_NAME": "customer-information-api",
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      },
       "applicationUrl": "http://localhost:5000"
     }
   }
