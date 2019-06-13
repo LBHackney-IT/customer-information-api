@@ -32,11 +32,10 @@ namespace customer_information_api.V1.Controllers
         /// <param name="tagReference">The tenancy reference</param>
         /// <returns>Returns a list of customer information records for a reference</returns>
         [HttpGet]
-        [Route("{tagReference}")]
         [Produces("application/json")]
         [ProducesResponseType(typeof(ListCustomerInformationResponse), 200)]
         [ProducesResponseType(typeof(NotFoundResult), 404)]
-        public IActionResult GetCustomerInformationByTagReference(ListCustomerInformationRequest request)
+        public IActionResult GetCustomerInformationByTagReference([FromQuery] ListCustomerInformationRequest request)
         {
             _logger.LogInformation("Customer information was requested for " + request.tagReference);
             var result = _useCase.Execute(request);
@@ -46,23 +45,6 @@ namespace customer_information_api.V1.Controllers
                 return Ok(result);
             }
             return NotFound();
-        }
-
-
-        /// <summary>
-        /// Returns a single customer information record for a customer id.
-        /// </summary>
-        /// <param name="customer_id"></param>
-        /// <returns></returns>
-        [HttpGet]
-        [Route("{customer_id}")]
-        [Produces("application/json")]
-        [ProducesResponseType(typeof(GetSingleCustomerInformationResponse), 200)]
-        [ProducesResponseType(typeof(CustomerInformationBadRequest), 400)]
-        [ProducesResponseType(typeof(NotFoundResult), 404)]
-        public IActionResult GetCustomerInformationByCustomerId([FromRoute] string customer_id)
-        {
-            return new JsonResult(new CustomerInformation()) { StatusCode = 501 };
         }
     }
 

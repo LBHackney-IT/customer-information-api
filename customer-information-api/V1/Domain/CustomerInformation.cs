@@ -8,6 +8,7 @@ namespace customer_information_api.V1.Domain
     public class CustomerInformation
     {
 #pragma warning disable IDE1006 // Naming Styles
+        public string houseRef { get; set; }
         public int contactId { get; set; }
         public string title { get; set; }
         public string forenames { get; set; }
@@ -17,7 +18,7 @@ namespace customer_information_api.V1.Domain
         public DateTime dateModified { get; set; }
         public string modifiedBy { get; set; }
         public string nationalInsuranceNumber { get; set; }
-        public DateTime dateOfBirth { get; set; }
+        public DateTime? dateOfBirth { get; set; }
         public string modificationType { get; set; }
         public string personType { get; set; }
         public string emailAddress { get; set; }
@@ -35,7 +36,8 @@ namespace customer_information_api.V1.Domain
             CustomerInformation customerInformation = obj as CustomerInformation;
             if (customerInformation != null)
             {
-                return string.Equals(contactId, customerInformation.contactId) &&
+                return string.Equals(houseRef, customerInformation.houseRef) &&
+                       string.Equals(contactId, customerInformation.contactId) &&
                        string.Equals(title, customerInformation.title) &&
                        string.Equals(forenames, customerInformation.forenames) &&
                        string.Equals(surname, customerInformation.surname) &&

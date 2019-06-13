@@ -18,6 +18,8 @@ using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.AspNetCore.Mvc.Versioning;
 using Swashbuckle.AspNetCore.Swagger;
 using Swashbuckle.AspNetCore.SwaggerGen;
+using customer_information_api.V1.Gateways;
+using customer_information_api.V1.UseCase;
 
 namespace customer_information_api
 {
@@ -109,12 +111,12 @@ namespace customer_information_api
 
         private static void RegisterGateWays(IServiceCollection services)
         {
-         //   services.AddSingleton<ITransactionsGateway, TransactionsGateway>();
+            services.AddSingleton<ICustomerInformationGateway, CustomerInformationGateway>();
         }
 
         private static void RegisterUseCases(IServiceCollection services)
         {
-            //services.AddSingleton<IListTransactions, ListTransactionsUsecase>();
+            services.AddSingleton<IListCustomerInformationUseCase, ListCustomerInformationUseCase>();
         }
 
 
