@@ -61,11 +61,11 @@ namespace customer_information_api.Tests.V1.Gateways
                 UPaymentExpected = _faker.Random.AlphaNumeric(3)
             };
 
-            UhCustomerInformation dbCustomer1 =
+            UhCustomerInformation dbCustomer =
                 UhCustomerInformationHelper.CreateUhCustomerInformation(); //customer1
-            dbCustomer1.HouseRef = houseRef;
+            dbCustomer.HouseRef = houseRef;
 
-            _uhContext.UhCustomerInformations.Add(dbCustomer1);
+            _uhContext.UhCustomerInformations.Add(dbCustomer);
             _uhContext.UhAgreements.Add(dbAgreement);
             #endregion
 
@@ -198,7 +198,7 @@ namespace customer_information_api.Tests.V1.Gateways
                 PotentialEndDate = _faker.Date.Soon(),
                 UPaymentExpected = _faker.Random.AlphaNumeric(3)
             };
-
+            //A customer without a matching tag ref to ensure that we don't return customers we didn't ask for.
             UhCustomerInformation dbCustomer3 =
                 UhCustomerInformationHelper.CreateUhCustomerInformation(); //customer3
             dbCustomer3.HouseRef = houseRef2;
