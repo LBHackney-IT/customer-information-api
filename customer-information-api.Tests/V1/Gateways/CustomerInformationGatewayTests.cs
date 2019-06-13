@@ -84,6 +84,53 @@ namespace customer_information_api.Tests.V1.Gateways
 
         //TO DO: Check if returns empty, if there are no shared house_refs between the tables.
 
+        [TestCase("000345/01", "000345", "001212")]
+        [TestCase("000628/03", "000628", "002323")]
+        public void GivenAMatchingTagRefOfARecordThatDoesNotLinkToUhCustomer_WhenAGatewayIsCalled_ThenItReturnsAnEmptyCollectionOfCustomers(string tagRef, string houseRef, string houseRef2)
+        {
+            //arrange
+            #region Matching data
+            UhAgreement dbAgreement = new UhAgreement() //matching agreement
+            {
+                HouseRef = houseRef,
+                TagRef = tagRef,
+                Active = _faker.Random.Bool(),
+                AdditionalDebit = _faker.Random.Bool(),
+                Committee = _faker.Random.Bool(),
+                CourtApp = _faker.Random.Bool(),
+                DtStamp = _faker.Date.Past(),
+                Eviction = _faker.Random.Bool(),
+                FdCharge = _faker.Random.Bool(),
+                FreeActive = _faker.Random.Bool(),
+                OtherAccounts = _faker.Random.Bool(),
+                Terminated = _faker.Random.Bool(),
+                IntroDate = _faker.Date.Past(),
+                ReceiptCard = _faker.Random.Bool(),
+                IntroExtDate = _faker.Date.Past(),
+                PotentialEndDate = _faker.Date.Soon(),
+                UPaymentExpected = _faker.Random.AlphaNumeric(3)
+            };
+
+            UhCustomerInformation dbCustomerUnmatching =
+                UhCustomerInformationHelper.CreateUhCustomerInformation(); //unmatching customer
+            dbCustomerUnmatching.HouseRef = houseRef2;
+
+            _uhContext.UhCustomerInformations.Add(dbCustomerUnmatching);
+            _uhContext.UhAgreements.Add(dbAgreement);
+            #endregion
+
+            _uhContext.SaveChanges();
+            //act
+            var response = _classUnderTest.GetCustomerInformationByTagReference(tagRef);
+
+            //assert
+            Assert.NotNull(response);
+            Assert.IsInstanceOf<IList<CustomerInformation>>(response);
+
+            Assert.Zero(response.Count);
+            Assert.Null(response.FirstOrDefault());
+        }
+
         [TestCase("000125/01", "000125", "000305")]
         [TestCase("000778/03", "000778", "000420")]
         public void GivenAMatchingTagRef_WhenAGatewayIsCalled_ThenItReturnsACollectionOfMathcingCustomers(string tagRef, string houseRef, string unmatchHouseRef)
