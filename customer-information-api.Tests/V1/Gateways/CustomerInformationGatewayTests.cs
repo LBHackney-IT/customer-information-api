@@ -61,8 +61,8 @@ namespace customer_information_api.Tests.V1.Gateways
             Assert.NotNull(response);
             Assert.IsInstanceOf<IList<CustomerInformation>>(response); //check if it's a collection
 
-            Assert.AreEqual(0, response.Count);
-            Assert.AreEqual(null, response.FirstOrDefault());
+            Assert.Zero(response.Count);
+            Assert.Null(response.FirstOrDefault());
         }
 
         [TestCase("000345/01", "000345", "001212")]
