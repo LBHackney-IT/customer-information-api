@@ -65,8 +65,6 @@ namespace customer_information_api.Tests.V1.Gateways
             Assert.AreEqual(null, response.FirstOrDefault());
         }
 
-        //TO DO: Check if returns empty, if there are no shared house_refs between the tables.
-
         [TestCase("000345/01", "000345", "001212")]
         [TestCase("000628/03", "000628", "002323")]
         public void GivenAMatchingTagRefOfARecordThatDoesNotLinkToUhCustomer_WhenAGatewayIsCalled_ThenItReturnsAnEmptyCollectionOfCustomers(string tagRef, string houseRef, string houseRef2)
