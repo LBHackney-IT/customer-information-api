@@ -40,26 +40,9 @@ namespace customer_information_api.Tests.V1.Gateways
             //Without this data, this test has only checked if the Gateway returns nothing, when there is nothing to return
             //rather than checking whether the Gateway genuinely ignores the unmatching TagRefs in DB and returns nothing because of it.
 
-            UhAgreement dbAgreement = new UhAgreement()
-            {
-                HouseRef = houseRef,
-                TagRef = tagRef,
-                Active = _faker.Random.Bool(),
-                AdditionalDebit = _faker.Random.Bool(),
-                Committee = _faker.Random.Bool(),
-                CourtApp = _faker.Random.Bool(),
-                DtStamp = _faker.Date.Past(),
-                Eviction = _faker.Random.Bool(),
-                FdCharge = _faker.Random.Bool(),
-                FreeActive = _faker.Random.Bool(),
-                OtherAccounts = _faker.Random.Bool(),
-                Terminated = _faker.Random.Bool(),
-                IntroDate = _faker.Date.Past(),
-                ReceiptCard = _faker.Random.Bool(),
-                IntroExtDate = _faker.Date.Past(),
-                PotentialEndDate = _faker.Date.Soon(),
-                UPaymentExpected = _faker.Random.AlphaNumeric(3)
-            };
+            UhAgreement dbAgreement = UhAgreementHelper.CreateUhAgreement();
+            dbAgreement.HouseRef = houseRef;
+            dbAgreement.TagRef = tagRef;
 
             UhCustomerInformation dbCustomer1 =
                 UhCustomerInformationHelper.CreateUhCustomerInformation(); //customer1
@@ -90,26 +73,9 @@ namespace customer_information_api.Tests.V1.Gateways
         {
             //arrange
             #region Matching data
-            UhAgreement dbAgreement = new UhAgreement() //matching agreement
-            {
-                HouseRef = houseRef,
-                TagRef = tagRef,
-                Active = _faker.Random.Bool(),
-                AdditionalDebit = _faker.Random.Bool(),
-                Committee = _faker.Random.Bool(),
-                CourtApp = _faker.Random.Bool(),
-                DtStamp = _faker.Date.Past(),
-                Eviction = _faker.Random.Bool(),
-                FdCharge = _faker.Random.Bool(),
-                FreeActive = _faker.Random.Bool(),
-                OtherAccounts = _faker.Random.Bool(),
-                Terminated = _faker.Random.Bool(),
-                IntroDate = _faker.Date.Past(),
-                ReceiptCard = _faker.Random.Bool(),
-                IntroExtDate = _faker.Date.Past(),
-                PotentialEndDate = _faker.Date.Soon(),
-                UPaymentExpected = _faker.Random.AlphaNumeric(3)
-            };
+            UhAgreement dbAgreement = UhAgreementHelper.CreateUhAgreement(); //matching agreement
+            dbAgreement.HouseRef = houseRef;
+            dbAgreement.TagRef = tagRef;
 
             UhCustomerInformation dbCustomerUnmatching =
                 UhCustomerInformationHelper.CreateUhCustomerInformation(); //unmatching customer
@@ -137,26 +103,9 @@ namespace customer_information_api.Tests.V1.Gateways
         {
             //arrange
             #region Matching data
-            UhAgreement dbAgreement = new UhAgreement()
-            {
-                HouseRef = houseRef,
-                TagRef = tagRef,
-                Active = _faker.Random.Bool(),
-                AdditionalDebit = _faker.Random.Bool(),
-                Committee = _faker.Random.Bool(),
-                CourtApp = _faker.Random.Bool(),
-                DtStamp = _faker.Date.Past(),
-                Eviction = _faker.Random.Bool(),
-                FdCharge = _faker.Random.Bool(),
-                FreeActive = _faker.Random.Bool(),
-                OtherAccounts = _faker.Random.Bool(),
-                Terminated = _faker.Random.Bool(),
-                IntroDate = _faker.Date.Past(),
-                ReceiptCard = _faker.Random.Bool(),
-                IntroExtDate = _faker.Date.Past(),
-                PotentialEndDate = _faker.Date.Soon(),
-                UPaymentExpected = _faker.Random.AlphaNumeric(3)
-            };
+            UhAgreement dbAgreement = UhAgreementHelper.CreateUhAgreement();
+            dbAgreement.HouseRef = houseRef;
+            dbAgreement.TagRef = tagRef;
 
             UhCustomerInformation dbCustomer1 =
                 UhCustomerInformationHelper.CreateUhCustomerInformation(); //customer1
@@ -178,26 +127,9 @@ namespace customer_information_api.Tests.V1.Gateways
             string houseRef2 = unmatchHouseRef;
             string tagRef2 = houseRef2 + "/01";
 
-            UhAgreement dbAgreement2 = new UhAgreement() //agreement 2
-            {
-                HouseRef = houseRef2,
-                TagRef = tagRef2,
-                Active = _faker.Random.Bool(),
-                AdditionalDebit = _faker.Random.Bool(),
-                Committee = _faker.Random.Bool(),
-                CourtApp = _faker.Random.Bool(),
-                DtStamp = _faker.Date.Past(),
-                Eviction = _faker.Random.Bool(),
-                FdCharge = _faker.Random.Bool(),
-                FreeActive = _faker.Random.Bool(),
-                OtherAccounts = _faker.Random.Bool(),
-                Terminated = _faker.Random.Bool(),
-                IntroDate = _faker.Date.Past(),
-                ReceiptCard = _faker.Random.Bool(),
-                IntroExtDate = _faker.Date.Past(),
-                PotentialEndDate = _faker.Date.Soon(),
-                UPaymentExpected = _faker.Random.AlphaNumeric(3)
-            };
+            UhAgreement dbAgreement2 = UhAgreementHelper.CreateUhAgreement(); //agreement 2
+            dbAgreement2.HouseRef = houseRef2;
+            dbAgreement2.TagRef = tagRef2;
 
             UhCustomerInformation dbCustomer3 =
                 UhCustomerInformationHelper.CreateUhCustomerInformation(); //customer3
