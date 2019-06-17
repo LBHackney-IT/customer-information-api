@@ -44,11 +44,11 @@ namespace customer_information_api.Tests.V1.Gateways
             dbAgreement.HouseRef = houseRef;
             dbAgreement.TagRef = tagRef;
 
-            UhCustomer dbCustomer1 =
+            UhCustomer dbCustomer =
                 UhCustomerHelper.CreateUhCustomer(); //customer1
-            dbCustomer1.HouseRef = houseRef;
+            dbCustomer.HouseRef = houseRef;
 
-            _uhContext.UhCustomers.Add(dbCustomer1);
+            _uhContext.UhCustomers.Add(dbCustomer);
             _uhContext.UhAgreements.Add(dbAgreement);
             #endregion
 
@@ -129,6 +129,7 @@ namespace customer_information_api.Tests.V1.Gateways
             dbAgreement2.HouseRef = houseRef2;
             dbAgreement2.TagRef = tagRef2;
 
+            //A customer without a matching tag ref to ensure that we don't return customers we didn't ask for.
             UhCustomer dbCustomer3 =
                 UhCustomerHelper.CreateUhCustomer(); //customer3
             dbCustomer3.HouseRef = houseRef2;
