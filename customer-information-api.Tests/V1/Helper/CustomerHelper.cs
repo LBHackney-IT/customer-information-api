@@ -7,12 +7,12 @@ using Bogus;
 
 namespace customer_information_api.Tests.V1.Helper
 {
-    public static class CustomerInformationHelper
+    public static class CustomerHelper
     {
-        public static CustomerInformation CreateCustomerInformation()
+        public static Customer CreateCustomer()
         {
             Faker faker = new Faker();
-            CustomerInformation customerInformation = new CustomerInformation()
+            Customer customer = new Customer()
             {
                 contactId = faker.Random.Int(5),
                 title = faker.Random.Hash(2),
@@ -36,7 +36,7 @@ namespace customer_information_api.Tests.V1.Helper
                 uhContact = faker.Random.Int(5),
                 tenancyRef = faker.Random.Hash(10)
             };
-            return customerInformation;
+            return customer;
         }
     }
 }

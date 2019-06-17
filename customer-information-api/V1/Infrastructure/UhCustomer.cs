@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace customer_information_api.V1.Infrastructure
 {
     [Table("member")]
-    public class UhCustomerInformation
+    public class UhCustomer
     {
         public string HouseRef { get; set; } //these get set through fluent API
         public int PersonNo { get; set; }
@@ -28,10 +28,10 @@ namespace customer_information_api.V1.Infrastructure
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
             if (obj.GetType() != this.GetType()) return false;
-            return Equals((UhCustomerInformation) obj);
+            return Equals((UhCustomer) obj);
         }
 
-        protected bool Equals(UhCustomerInformation other)
+        protected bool Equals(UhCustomer other)
         {
             return string.Equals(Title, other.Title) &&
                    string.Equals(Forename, other.Forename) &&

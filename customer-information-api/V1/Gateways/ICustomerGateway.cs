@@ -6,8 +6,8 @@ using customer_information_api.V1.Domain;
 
 namespace customer_information_api.V1.Gateways
 {
-    public interface ICustomerInformationGateway
+    public interface ICustomerGateway
     {
-        List<CustomerInformation> GetCustomerInformationByTagReference(string tagReference);
+        List<Customer> GetCustomersByTagReference(string tagReference);
     }
 }

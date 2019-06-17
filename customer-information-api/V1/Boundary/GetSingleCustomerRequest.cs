@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace customer_information_api.V1.Boundary
 {
-    public class GetSingleCustomerInformationRequest
+    public class GetSingleCustomerRequest
     {
         public string customer_id { get; set; }
     }

@@ -15,20 +15,20 @@ using UnitTests;
 namespace customer_information_api.Tests.V1.Gateways
 {
     [TestFixture()]
-    public class CustomerInformationGatewayTests : DbTest
+    public class CustomerGatewayTests : DbTest
     {
         private readonly Faker _faker = new Faker();
-        private CustomerInformationGateway _classUnderTest;
+        private CustomerGateway _classUnderTest;
         [SetUp]
         public void SetUp()
         {
-            _classUnderTest = new CustomerInformationGateway(_uhContext);
+            _classUnderTest = new CustomerGateway(_uhContext);
         }
 
         [Test]
         public void ListOfCustomersImplementBoundaryInterface()
         {
-            Assert.NotNull(_classUnderTest is ICustomerInformationGateway);
+            Assert.NotNull(_classUnderTest is ICustomerGateway);
         }
 
         [TestCase("010135/01", "010135")]
@@ -44,22 +44,22 @@ namespace customer_information_api.Tests.V1.Gateways
             dbAgreement.HouseRef = houseRef;
             dbAgreement.TagRef = tagRef;
 
-            UhCustomerInformation dbCustomer1 =
-                UhCustomerInformationHelper.CreateUhCustomerInformation(); //customer1
+            UhCustomer dbCustomer1 =
+                UhCustomerHelper.CreateUhCustomer(); //customer1
             dbCustomer1.HouseRef = houseRef;
 
-            _uhContext.UhCustomerInformations.Add(dbCustomer1);
+            _uhContext.UhCustomers.Add(dbCustomer1);
             _uhContext.UhAgreements.Add(dbAgreement);
             #endregion
 
             _uhContext.SaveChanges();
 
             //act
-            var response = _classUnderTest.GetCustomerInformationByTagReference("Test");
+            var response = _classUnderTest.GetCustomersByTagReference("Test");
 
             //assert
             Assert.NotNull(response);
-            Assert.IsInstanceOf<IList<CustomerInformation>>(response); //check if it's a collection
+            Assert.IsInstanceOf<IList<Customer>>(response); //check if it's a collection
 
             Assert.Zero(response.Count);
             Assert.Null(response.FirstOrDefault());
@@ -75,21 +75,21 @@ namespace customer_information_api.Tests.V1.Gateways
             dbAgreement.HouseRef = houseRef;
             dbAgreement.TagRef = tagRef;
 
-            UhCustomerInformation dbCustomerUnmatching =
-                UhCustomerInformationHelper.CreateUhCustomerInformation(); //unmatching customer
+            UhCustomer dbCustomerUnmatching =
+                UhCustomerHelper.CreateUhCustomer(); //unmatching customer
             dbCustomerUnmatching.HouseRef = houseRef2;
 
-            _uhContext.UhCustomerInformations.Add(dbCustomerUnmatching);
+            _uhContext.UhCustomers.Add(dbCustomerUnmatching);
             _uhContext.UhAgreements.Add(dbAgreement);
             #endregion
 
             _uhContext.SaveChanges();
             //act
-            var response = _classUnderTest.GetCustomerInformationByTagReference(tagRef);
+            var response = _classUnderTest.GetCustomersByTagReference(tagRef);
 
             //assert
             Assert.NotNull(response);
-            Assert.IsInstanceOf<IList<CustomerInformation>>(response);
+            Assert.IsInstanceOf<IList<Customer>>(response);
 
             Assert.Zero(response.Count);
             Assert.Null(response.FirstOrDefault());
@@ -105,17 +105,17 @@ namespace customer_information_api.Tests.V1.Gateways
             dbAgreement.HouseRef = houseRef;
             dbAgreement.TagRef = tagRef;
 
-            UhCustomerInformation dbCustomer1 =
-                UhCustomerInformationHelper.CreateUhCustomerInformation(); //customer1
+            UhCustomer dbCustomer1 =
+                UhCustomerHelper.CreateUhCustomer(); //customer1
             dbCustomer1.HouseRef = houseRef;
 
-            UhCustomerInformation dbCustomer2 =
-                UhCustomerInformationHelper.CreateUhCustomerInformation(); //customer2
+            UhCustomer dbCustomer2 =
+                UhCustomerHelper.CreateUhCustomer(); //customer2
             dbCustomer2.HouseRef = houseRef;
 
 
-            _uhContext.UhCustomerInformations.Add(dbCustomer1);
-            _uhContext.UhCustomerInformations.Add(dbCustomer2);
+            _uhContext.UhCustomers.Add(dbCustomer1);
+            _uhContext.UhCustomers.Add(dbCustomer2);
             _uhContext.UhAgreements.Add(dbAgreement);
             #endregion
 
@@ -129,11 +129,11 @@ namespace customer_information_api.Tests.V1.Gateways
             dbAgreement2.HouseRef = houseRef2;
             dbAgreement2.TagRef = tagRef2;
 
-            UhCustomerInformation dbCustomer3 =
-                UhCustomerInformationHelper.CreateUhCustomerInformation(); //customer3
+            UhCustomer dbCustomer3 =
+                UhCustomerHelper.CreateUhCustomer(); //customer3
             dbCustomer3.HouseRef = houseRef2;
 
-            _uhContext.UhCustomerInformations.Add(dbCustomer3);
+            _uhContext.UhCustomers.Add(dbCustomer3);
             _uhContext.UhAgreements.Add(dbAgreement2);
 
             //While our current test configuration has the accumulation of these data entity objects (db rollback only after db tests),
@@ -143,11 +143,11 @@ namespace customer_information_api.Tests.V1.Gateways
             _uhContext.SaveChanges();
 
             //act
-            var response = _classUnderTest.GetCustomerInformationByTagReference(tagRef);
+            var response = _classUnderTest.GetCustomersByTagReference(tagRef);
 
             //assert
             Assert.NotNull(response);
-            Assert.IsInstanceOf<IList<CustomerInformation>>(response); //check if it's a collection
+            Assert.IsInstanceOf<IList<Customer>>(response); //check if it's a collection
 
             Assert.AreEqual(2, response.Count);
 

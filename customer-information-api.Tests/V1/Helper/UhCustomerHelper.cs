@@ -5,13 +5,13 @@ using customer_information_api.V1.Infrastructure;
 
 namespace customer_information_api.Tests.V1.Helper
 {
-    public static class UhCustomerInformationHelper
+    public static class UhCustomerHelper
     {
-        public static UhCustomerInformation CreateUhCustomerInformation()
+        public static UhCustomer CreateUhCustomer()
         {
             Faker _faker = new Faker();
 
-            UhCustomerInformation uhCustomerInformation = new UhCustomerInformation()
+            UhCustomer uhCustomer = new UhCustomer()
             {
                 HouseRef = _faker.Random.AlphaNumeric(10),
                 Title = _faker.Random.Hash(2),
@@ -30,7 +30,7 @@ namespace customer_information_api.Tests.V1.Helper
                 BankAccType = _faker.Random.AlphaNumeric(3)
             };
 
-            return uhCustomerInformation;
+            return uhCustomer;
         }
     }
 }

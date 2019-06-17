@@ -15,12 +15,12 @@ namespace customer_information_api.V1.Controllers
     [Route("api/v1/customer")]
     [ApiController]
     [Produces("application/json")]
-    public class CustomerInformationController : BaseController
+    public class CustomerController : BaseController
     {
-        private IListCustomerInformationUseCase _useCase;
-        private ILogger<CustomerInformationController> _logger;
+        private IGetCustomersUseCase _useCase;
+        private ILogger<CustomerController> _logger;
 
-        public CustomerInformationController(IListCustomerInformationUseCase useCase, ILogger<CustomerInformationController> logger)
+        public CustomerController(IGetCustomersUseCase useCase, ILogger<CustomerController> logger)
         {
             _useCase = useCase;
             _logger = logger;
@@ -33,9 +33,9 @@ namespace customer_information_api.V1.Controllers
         /// <returns>Returns a list of customer information records for a reference</returns>
         [HttpGet]
         [Produces("application/json")]
-        [ProducesResponseType(typeof(ListCustomerInformationResponse), 200)]
+        [ProducesResponseType(typeof(GetCustomersUseCaseResponse), 200)]
         [ProducesResponseType(typeof(NotFoundResult), 404)]
-        public IActionResult GetCustomerInformationByTagReference([FromQuery] ListCustomerInformationRequest request)
+        public IActionResult GetCustomersByTagReference([FromQuery] GetCustomersUseCaseRequest request)
         {
             _logger.LogInformation("Customer information was requested for " + request.tagReference);
             var result = _useCase.Execute(request);
@@ -48,7 +48,7 @@ namespace customer_information_api.V1.Controllers
         }
     }
 
-    internal class CustomerInformationBadRequest
+    internal class CustomerBadRequest
     {
         public string status;
         public List<string> errors;

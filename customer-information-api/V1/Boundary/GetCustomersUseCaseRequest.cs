@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace customer_information_api.V1.Boundary
 {
-    public class ListCustomerInformationRequest
+    public class GetCustomersUseCaseRequest
     {
         public string tagReference { get; set; }
     }

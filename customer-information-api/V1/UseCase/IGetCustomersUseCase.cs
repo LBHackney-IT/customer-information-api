@@ -6,8 +6,8 @@ using customer_information_api.V1.Boundary;
 
 namespace customer_information_api.V1.UseCase
 {
-    public interface IListCustomerInformationUseCase
+    public interface IGetCustomersUseCase
     {
-        ListCustomerInformationResponse Execute(ListCustomerInformationRequest request);
+        GetCustomersUseCaseResponse Execute(GetCustomersUseCaseRequest request);
     }
 }

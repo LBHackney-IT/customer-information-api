@@ -6,6 +6,6 @@ namespace customer_information_api.V1.Infrastructure
     public interface IUHContext
     {
         DbSet<UhAgreement> UhAgreements { get; set; }
-        DbSet<UhCustomerInformation> UhCustomerInformations { get; set; }
+        DbSet<UhCustomer> UhCustomers { get; set; }
     }
 }

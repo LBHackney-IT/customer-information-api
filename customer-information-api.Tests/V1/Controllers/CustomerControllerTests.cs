@@ -18,33 +18,33 @@ using NUnit.Framework.Internal;
 namespace customer_information_api.Tests.V1.Controllers
 {
     [TestFixture]
-    public class CustomerInformationControllerTests
+    public class CustomerControllerTests
     {
-        private CustomerInformationController _classUnderTest;
-        private Mock<IListCustomerInformationUseCase> _mockUseCase;
-        private Mock<ILogger<CustomerInformationController>> _mockLogger;
+        private CustomerController _classUnderTest;
+        private Mock<IGetCustomersUseCase> _mockUseCase;
+        private Mock<ILogger<CustomerController>> _mockLogger;
         private Faker faker;
         [SetUp]
         public void SetUp()
         {
-            _mockUseCase = new Mock<IListCustomerInformationUseCase>();
-            _mockLogger = new Mock<ILogger<CustomerInformationController>>();
-            _classUnderTest = new CustomerInformationController(_mockUseCase.Object, _mockLogger.Object);
+            _mockUseCase = new Mock<IGetCustomersUseCase>();
+            _mockLogger = new Mock<ILogger<CustomerController>>();
+            _classUnderTest = new CustomerController(_mockUseCase.Object, _mockLogger.Object);
             faker = new Faker();
         }
 
         [Test]
         public void ControllerShouldReturnCorrectResultAndStatus()
         {
-            var customerInformationRecord = CustomerInformationHelper.CreateCustomerInformation();
-            var request = new ListCustomerInformationRequest(){tagReference = faker.Random.Hash(10)};
+            var customerRecord = CustomerHelper.CreateCustomer();
+            var request = new GetCustomersUseCaseRequest(){tagReference = faker.Random.Hash(10)};
             var expectedResult =
-                new ListCustomerInformationResponse(request,
-                    new List<CustomerInformation>() {customerInformationRecord});
+                new GetCustomersUseCaseResponse(request,
+                    new List<Customer>() {customerRecord});
 
             _mockUseCase.Setup(x => x.Execute(request)).Returns(expectedResult);
 
-            var result = _classUnderTest.GetCustomerInformationByTagReference(request);
+            var result = _classUnderTest.GetCustomersByTagReference(request);
 
             Assert.NotNull(result);
             Assert.AreEqual(200, ((ObjectResult)result).StatusCode);

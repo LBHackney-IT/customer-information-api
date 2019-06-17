@@ -8,21 +8,21 @@ using customer_information_api.V1.Infrastructure;
 
 namespace customer_information_api.V1.Gateways
 {
-    public class CustomerInformationGateway : ICustomerInformationGateway
+    public class CustomerGateway : ICustomerGateway
     {
         private readonly IUHContext _uhContext;
-        private readonly CustomerInformationFactory _customerInformationFactory;
+        private readonly CustomerFactory _customerFactory; //this is not being used due to the nature of the query
 
-        public CustomerInformationGateway(IUHContext uhContext)
+        public CustomerGateway(IUHContext uhContext)
         {
-            _customerInformationFactory = new CustomerInformationFactory();
+            _customerFactory = new CustomerFactory();
             _uhContext = uhContext;
         }
-        public List<CustomerInformation> GetCustomerInformationByTagReference(string tagReference)
+        public List<Customer> GetCustomersByTagReference(string tagReference)
         {
-            List<CustomerInformation> customers = _uhContext.UhAgreements.Where(a => a.TagRef == tagReference)
-                .Join(_uhContext.UhCustomerInformations, a => a.HouseRef, c => c.HouseRef, (a, c) =>
-                new CustomerInformation
+            List<Customer> customers = _uhContext.UhAgreements.Where(a => a.TagRef == tagReference)
+                .Join(_uhContext.UhCustomers, a => a.HouseRef, c => c.HouseRef, (a, c) =>
+                new Customer
                 {
                     houseRef = a.HouseRef,
                     title = c.Title,
@@ -39,7 +39,7 @@ namespace customer_information_api.V1.Gateways
         }
     }
 
-    internal class CustomerInformationFactory
+    internal class CustomerFactory
     {
     }
 }
