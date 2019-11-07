@@ -35,5 +35,11 @@ namespace UnitTests.V1.Controllers
         {
             Assert.Throws<TestOpsErrorException>(_classUnderTest.ThrowError);
         }
+        
+        [Test]
+        public void Does_TwoPlusTwo_Equals_Five()
+        {
+            Assert.AreEqual(2+2, 5);
+        }
     }
 }
